@@ -18,7 +18,9 @@ switch($method) {
         }
 
         header('Content-Type: application/json');
-        if (!isset($params['id'])) print('[');
+        header('Access-Control-Allow-Origin: *');
+
+        if (!isset($params['id'])) echo '[';
         $dh  = opendir($dir);
         $sep = '';
         while( $file = readdir($dh) ) {
@@ -31,7 +33,7 @@ switch($method) {
                 if ( $params['id'] == $id ) {
                     $entity        = json_decode(file_get_contents($dir.$file), true);
                     $entity['_id'] = $id;
-                    print(json_encode($entity));
+                    echo json_encode($entity);
                     exit(0);
                 }
                 continue;
@@ -41,11 +43,11 @@ switch($method) {
             if ( isset($params['filter']) && !entity_matches($entity,$params['filter']) ) {
                 continue;
             }
-            print($sep);
+            echo $sep;
             $sep = ',';
-            print(json_encode($entity));
+            echo json_encode($entity);
         }
-        if (!isset($params['id'])) print(']');
+        if (!isset($params['id'])) echo ']';
         break;
 
     case 'POST':
@@ -54,11 +56,58 @@ switch($method) {
             mkdir($dir);
         }
 
-        $id   = uuid($params['collection']);
+        header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
+
+        $id   = isset($params['id']) ? $params['id'] : uuid($params['collection']);
         $file = $dir.$id.'.json';
         file_put_contents($file,json_encode($_POST));
         $_POST['_id'] = $id;
-        print(json_encode($_POST));
+        echo json_encode($_POST);
 
+        break;
+
+    case 'DELETE':
+        $dir = APPROOT.DS.'data'.DS.$params['collection'].DS;
+        if (!is_dir($dir)) {
+            header('HTTP/1.0 404 Not Found');
+            echo 'Not Found - Collection does not exist';
+            exit(0);
+        }
+        if (!isset($params['id'])) {
+            header('HTTP/1.0 400 Not Found');
+            echo 'Bad Request - No ID given';
+            exit(0);
+        }
+
+        header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
+
+        $file = $dir.$params['id'].'.json';
+        if(!is_file($file)) {
+            header('HTTP/1.0 404 Not Found');
+            echo 'Not Found - Entity does not exist';
+            exit(0);
+        }
+
+        $entity        = json_decode(file_get_contents($file), true);
+        $entity['_id'] = $params['id'];
+        unlink($file);
+        echo json_encode($entity);
+        break;
+
+    case 'OPTIONS':
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE');
+        if (array_key_exists('HTTP_ACCESS_CONTROL_REQUEST_HEADERS', $_SERVER)) {
+            header('Access-Control-Allow-Headers: '.$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
+        } else {
+            header('Access-Control-Allow-Headers: *');
+        }
+        break;
+
+    default:
+        header('HTTP/1.0 400 Bad Request');
+        echo 'Bad Request - Invalid method';
         break;
 }
