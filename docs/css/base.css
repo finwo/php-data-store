@@ -78,5 +78,5 @@ nav a:hover {
   display: none;
 }
 .view:target {
-  display: initial;
+  display: block;
 }
