@@ -1,19 +1,19 @@
-ul.collections {
+ul.simple {
     list-style-type : none;
     padding         : 0;
 }
-ul.collections li a {
+ul.simple li a {
     display : inline-block;
     padding : 0.5em;
     width   : 100%;
 }
-ul.collections li a:hover {
+ul.simple li a:hover {
     background-color: rgba(0,0,0,0.1);
 }
-ul.collections li a.active {
+ul.simple li a.active {
     background: #5AF;
     color     : #FFF;
 }
-ul.collections li + li {
+ul.simple li + li {
     border-top: 1px solid rgba(0,0,0,0.2);
 }

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/css/base.css" />
         <link rel="stylesheet" href="/css/grid.css" />
-        <link rel="stylesheet" href="/css/collections.css" />
+        <link rel="stylesheet" href="/css/lists.css" />
     </head>
     <body>
         <nav class="shadow">
@@ -16,16 +16,31 @@
         <div class="container">
             <div>
                 <div class="col-1-5 padded">
-                    <ul class="shadow collections" data-source="/api/collections">
-                        <li><a href="#{name}">{name}</a></li>
+                    <ul class="shadow simple" data-source="/api/collections">
+                        <li><a href="#{name}" onclick="activate(this);">{name}</a></li>
                     </ul>
                 </div>
-                <div class="col-4-5 padded">
-                    WIP
+                <div class="col-4-5 padded" data-source="/api/collections">
+                    <ul id="{name}" class="view shadow simple" data-source="/api/data/{name}">
+                        <li class="padded">ITEM</li>
+                    </ul>
                 </div>
             </div>
         </div>
         <script src="/js/require.js"></script>
         <script src="/js/data-source.js"></script>
+
+        <script>
+            function activate( el ) {
+                document.querySelectorAll('.active').forEach(function( entity ) {
+                    entity.className = entity.className
+                            .split(' ')
+                            .filter(function(className) {return !!className.length;})
+                            .filter(function(className) {return className != 'active'})
+                            .join(' ');
+                });
+                el.className += ' active';
+            }
+        </script>
     </body>
 </html>
