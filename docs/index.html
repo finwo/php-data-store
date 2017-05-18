@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Store</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/css/base.css" />
+        <link rel="stylesheet" href="/css/grid.css" />
+        <link rel="stylesheet" href="/css/collections.css" />
+    </head>
+    <body>
+        <nav class="shadow">
+            <div class="container">
+                <a href="/">Data Store</a>
+            </div>
+        </nav>
+        <div class="container">
+            <div>
+                <div class="col-1-5 padded">
+                    <ul class="shadow collections" data-source="/api/collections">
+                        <li><a href="#{name}">{name}</a></li>
+                    </ul>
+                </div>
+                <div class="col-4-5 padded">
+                    WIP
+                </div>
+            </div>
+        </div>
+        <script src="/js/require.js"></script>
+        <script src="/js/data-source.js"></script>
+    </body>
+</html>
