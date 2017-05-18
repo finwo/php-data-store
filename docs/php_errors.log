@@ -1,0 +1,13 @@
+[18-May-2017 10:46:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')', expecting variable (T_VARIABLE) or '$' in /var/www/vps/data-store/docs/css/grid.css.php on line 19
+[18-May-2017 10:50:15 Europe/Berlin] PHP Parse error:  syntax error, unexpected '12' (T_LNUMBER), expecting ')' in /var/www/vps/data-store/docs/css/grid.css.php on line 30
+[18-May-2017 11:27:04 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in /var/www/vps/data-store/docs/api/data.php on line 4
+[18-May-2017 11:27:36 Europe/Berlin] PHP Warning:  scandir(/var/www/vps/data-store/user): failed to open dir: No such file or directory in /var/www/vps/data-store/docs/api/data.php on line 4
+[18-May-2017 11:27:36 Europe/Berlin] PHP Warning:  scandir(): (errno 2): No such file or directory in /var/www/vps/data-store/docs/api/data.php on line 4
+[18-May-2017 11:47:40 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in /var/www/vps/data-store/docs/api/data.php on line 4
+[18-May-2017 11:58:41 Europe/Berlin] PHP Notice:  Undefined variable: entity in /var/www/vps/data-store/docs/api/data.php on line 29
+[18-May-2017 12:06:29 Europe/Berlin] PHP Notice:  Undefined variable: contents in /var/www/vps/data-store/docs/api/data.php on line 36
+[18-May-2017 12:18:28 Europe/Berlin] PHP Fatal error:  Call to undefined function random_int() in /var/www/vps/data-store/docs/api/init.php on line 68
+[18-May-2017 12:19:14 Europe/Berlin] PHP Warning:  rand() expects exactly 2 parameters, 1 given in /var/www/vps/data-store/docs/api/init.php on line 68
+[18-May-2017 12:19:15 Europe/Berlin] PHP Warning:  rand() expects exactly 2 parameters, 1 given in /var/www/vps/data-store/docs/api/init.php on line 68
+[18-May-2017 12:19:23 Europe/Berlin] PHP Warning:  rand() expects exactly 2 parameters, 1 given in /var/www/vps/data-store/docs/api/init.php on line 68
+[18-May-2017 12:19:24 Europe/Berlin] PHP Warning:  rand() expects exactly 2 parameters, 1 given in /var/www/vps/data-store/docs/api/init.php on line 68
